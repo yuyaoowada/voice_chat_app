@@ -1,18 +1,24 @@
-import numpy as np
+import threading
 
-from voice_chat_app.audio import play_by_simpleaudio
-from voice_chat_app.chatgpt import get_chatgpt_response
-from voice_chat_app.recognition import recognize_speech
-from voice_chat_app.voicevox import get_voicevox_audio
+import asyncio
+
+from voice_chat_app.opencv import video_playback
+from voice_chat_app.talk import talk
+
+
+def main():
+    print('　　　　　~~ずんだもんと話をしよう！~~　　　　　\n',
+          '　　　　　　©VOICEVOX:ずんだもん　　　　　　 ')
+
+    talk()
+
+    # asyncio.run(video_playback())
+    # asyncio.run(talk())
+    # t1 = threading.Thread(target=video_playback)
+    # t2 = threading.Thread(target=talk)
+    # t1.start()
+    # t2.start()
+
 
 if __name__ == '__main__':
-    prompt = recognize_speech()
-
-    chatgpt_response = get_chatgpt_response(prompt).choices[0].text
-
-    audio_data = get_voicevox_audio(chatgpt_response).content
-
-    play_by_simpleaudio(audio_data)
-
-    print(f"ずんだもん: {chatgpt_response}")
-    print("Voicevox: 音声を再生しました。")
+    main()
