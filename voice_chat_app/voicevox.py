@@ -2,6 +2,7 @@ import requests
 
 
 def get_voicevox_audio(text=None, speaker=1):  # VOICEVOX:ずんだもん
+    """Voice playback by Voicevox"""
     host = "127.0.0.1"
     port = 50021
     query_payload = {"text": text, "speaker": speaker}
